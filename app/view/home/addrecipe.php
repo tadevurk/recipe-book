@@ -5,7 +5,7 @@ session_set_cookie_params(1800);
 session_start();
 require_once __DIR__ . '/../../model/user.php';
 require_once __DIR__ . '/../../model/recipe.php';
-require_once __DIR__ . '/../../repository/reciperepository.php';
+require_once __DIR__ . '/../../controllers/recipecontroller.php';
 
 if (isset($_SESSION['message'])) {
     echo $_SESSION['message'];
@@ -37,19 +37,13 @@ if (isset($_SESSION['user']) || isset($_SESSION['admin']) ) {
             $quantity = htmlspecialchars($_POST['quantity'][$key]);
             array_push($ingredientArray, array('ingredient' => $ingredient, 'unit' => $unit, 'quantity' => $quantity));
         }
-
-
         $recipe->name = htmlspecialchars($_POST["recipeName"]);
         $recipe->cuisine = htmlspecialchars($_POST["cuisineName"]);
         $recipe->instructions = htmlspecialchars($_POST["instructions"]);
         $recipe->ingredients = $ingredientArray;
 
-        //print_r($recipe);
-        print_r($recipe->ingredients[0]['ingredient']);
-
-        $recipeRepository = new reciperepository();
-        // TODO: passing the userID from the session? It's not a good practice
-        $recipeRepository->insertRecipe($recipe,$userID);
+        $recipecontroller = new recipecontroller();
+        $recipecontroller->insertRecipe($recipe,$userID);
         $_SESSION['message'] = "Inserted successfully";
     }
 }
@@ -218,7 +212,6 @@ if (isset($_SESSION['message'])) {
       });
 
       //Autocomplete
-
       function debounce(func, wait) {
           let timeout;
           return function(...args) {

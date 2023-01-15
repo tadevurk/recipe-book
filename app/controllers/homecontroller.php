@@ -6,7 +6,7 @@ class homecontroller
 {
     public function index()
     {
-        require ("../view/home/index.php");
+        $this->recipe();
     }
 
     public function addrecipe()

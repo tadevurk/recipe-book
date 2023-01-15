@@ -19,6 +19,12 @@ class recipecontroller
         require ("../view/home/recipe.php");
     }
 
+    public function insertRecipe(recipe $recipe, int $userID){
+        require_once("../repository/reciperepository.php");
+        $recipeRepository = new reciperepository();
+        $recipes = $recipeRepository->insertRecipe($recipe,$userID);
+    }
+
     public function deleteRecipe(){
         if (isset($_POST["delete_recipe"])){
             require_once("../repository/reciperepository.php");
