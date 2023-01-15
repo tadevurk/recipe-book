@@ -2,9 +2,9 @@
 // Start the session
 session_start();
 
-require_once __DIR__ . '/../../repository/reciperepository.php';
+require_once __DIR__ . '/../../controllers/recipecontroller.php'; // TODO: delete this
 
-$recipeRepository = new reciperepository();
+$recipecontroller = new recipecontroller();
 if (isset($_POST['delete_recipe'])) {
     $_SESSION['message'] = "Deleted successfully";
 }
@@ -112,7 +112,8 @@ if (isset($_SESSION['message'])) {
             <form method="post" action="">
                 <div class="form-group">
                     <label for="recipeSearch">Search by Recipe Name:</label>
-                    <input id="recipe-search" type="text" class="form-control" name="recipeName">
+                    <input id="recipe-search" type="text" class="form-control" name="recipeName" list="suggestions-list" autocomplete="off">
+                    <datalist id="suggestions-list"></datalist>
                 </div>
                 <button type="submit" class="btn btn-primary">Search</button>
             </form>
@@ -155,7 +156,7 @@ if (isset($_SESSION['message'])) {
                                     <h6 style="color: #17a2b8">Ingredients:</h6>
                                     <ul class="list-group list-group-flush">
                                         <?php
-                                        $recipe_ingredients = $recipeRepository->getAllRecipeIngredients($recipe->id);
+                                        $recipe_ingredients = $recipecontroller->getAllRecipeIngredients($recipe->id);
                                         foreach ($recipe_ingredients as $ingredient){?>
                                             <li class="list-group-item"><?= $ingredient['name']?></li>
                                             <li class="list-group-item"><?= $ingredient['quantity']?></li>
@@ -195,24 +196,43 @@ if (isset($_SESSION['message'])) {
 </div>
 
 
-<!--Footer-->
-<footer class="bg-dark py-3" style="left: 0; bottom: 0; width: 100%;">
-    <div class="container">
-        <div class="row justify-content-between">
-            <div class="col-auto mb-2">
-                <p class="text-white bg-dark">Vedat Türk End Assignment</p>
-            </div>
-            <div class="col-auto mb-2">
-                <ul class="list-inline text-primary">
-                    <li class="list-inline-item"><a href="index">Home</a></li>
-                    <li class="list-inline-item"><a href="aboutme">About</a></li>
-                    <li class="list-inline-item"><a href="ContactMe">Contact</a></li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</footer>
+<?php include 'footer.php';?>
 
+<script>
+    //Autocomplete
+    function debounce(func, wait) {
+        let timeout;
+        return function(...args) {
+            clearTimeout(timeout);
+            timeout = setTimeout(() => func.apply(this, args), wait);
+        };
+    }
 
+    document.getElementById("recipe-search").addEventListener("keyup", debounce(function(e) {
+        e.preventDefault()
+
+            // Get the value of the form element
+            const searchValue = e.target.value;
+
+            if (searchValue){
+                fetch('http://localhost/api/recipename', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify(searchValue)
+                })
+                    .then(result=> result.json())
+                    .then(items => {
+                        let suggestionsList = document.getElementById("suggestions-list");
+                        suggestionsList.innerHTML = "";
+                        for (let recipe of items) {
+                            let option = document.createElement("option");
+                            option.value = recipe['name'];
+                            suggestionsList.appendChild(option);
+                        }
+                    })
+            }
+
+    }, 200));
+</script>
 </body>
 </html>

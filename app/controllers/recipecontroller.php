@@ -74,4 +74,10 @@ class recipecontroller
             exit();
         }
     }
+
+    public function getAllRecipeIngredients($recipe_id){
+        require_once("../repository/reciperepository.php");
+        $recipeRepository = new reciperepository();
+        return $recipeRepository->getAllRecipeIngredients($recipe_id);
+    }
 }

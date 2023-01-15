@@ -9,7 +9,6 @@ class IngredientController{
     {
         $this->ingredientService = new IngredientService();
     }
-
         // router maps this to /api/article automatically
         public function index(){
         header('Access-Control-Allow-Origin: *');
@@ -30,8 +29,6 @@ class IngredientController{
                 }
 
             }
-
     }
-
 }
 ?>

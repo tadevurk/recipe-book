@@ -1,7 +1,7 @@
 <?php
-require __DIR__ . '/../../services/recipenameservice.php';
+require_once __DIR__ . '/../../services/recipenameservice.php';
 
-class RecipeNameController{
+class recipenamecontroller{
     private $recipeNameService;
 
     // initialize services
@@ -9,8 +9,7 @@ class RecipeNameController{
     {
         $this->recipeNameService = new RecipeNameService();
     }
-
-    // router maps this to /api/article automatically
+    // router maps this to /api/recipename automatically
     public function index(){
         header('Access-Control-Allow-Origin: *');
         header('Access-Control-Allow-Headers: *');
@@ -23,14 +22,12 @@ class RecipeNameController{
             $object = json_decode($body);
 
             if (isset($object)){
-                $recipeNames = $this->recipeNameService->getAllRecipeByName($object);
+                $recipeNames = $this->recipeNameService->getAllRecipeNames($object);
                 header('Content-Type: application/json');
                 // try get api end point code to check through insomnia
                 echo json_encode($recipeNames);
             }
         }
-
     }
-
 }
 ?>

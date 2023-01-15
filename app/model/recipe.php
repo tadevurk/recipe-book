@@ -1,7 +1,13 @@
 <?php
 
-class recipe
+class recipe implements JsonSerializable
 {
+    public function jsonSerialize(): mixed
+    {
+        // TODO: Implement jsonSerialize() method.
+        return get_object_vars($this);
+    }
+
     public int $id;
     public string $name;
     public string $instructions;

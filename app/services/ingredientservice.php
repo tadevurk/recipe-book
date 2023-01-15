@@ -6,7 +6,7 @@ class IngredientService{
     public function getAllByName(string $name) {
         // retrieve data
         $repository = new ingredientrepository();
-        return $repository->getAllByName($name);
+        return $repository->getAllRecipeNames($name);
     }
 
     public function postIngredient(string $name){

@@ -63,11 +63,11 @@ public function getAllRecipeIngredients($recipe_id){
     return $recipe_ingredients;
 }
 
-public function getAllRecipeByName(string $name)
+public function getAllRecipeNames(string $name)
 {
-    require("../model/recipe.php");
+    require_once("../model/recipe.php");
     try {
-        $stmt = $this->connection->prepare("SELECT * FROM recipe WHERE name LIKE :name LIMIT 3");
+        $stmt = $this->connection->prepare("SELECT id, name FROM recipe WHERE name LIKE :name LIMIT 4");
 
         $data = [':name'=>"%$name%"];
         $stmt->execute($data);
