@@ -1,0 +1,7 @@
+
+kphp:S103"KSplit this 142 characters long line (which is greater than 120 authorized).(«É†çøÿÿÿÿ8¿ÜÒÊÕ0
+W	php:S1808"=Move this open curly brace to the beginning of the next line.(â•üıÿÿÿÿ
+W	php:S1808"=Move this open curly brace to the beginning of the next line.(«É†çøÿÿÿÿ
+7	php:S1780"Remove this closing tag "?>".(Ö‘äÏúÿÿÿÿ
+rphp:S116	"YRename this field "$hashed_password" to match the regular expression ^[a-z][a-zA-Z0-9]*$.(µÍÏòùÿÿÿÿ
+vphp:S117"]Rename this parameter "$hashed_password" to match the regular expression ^[a-z][a-zA-Z0-9]*$.(«É†çøÿÿÿÿ

@@ -1,0 +1,40 @@
+.card-title {
+    color: #17a2b8; /* or any other color you prefer */
+}
+
+.card {
+    height: 1000px;
+}
+.card-img-top {
+    height: 200px;
+}
+.card-body {
+    height: 300px;
+    width: auto;
+    color: bisque;
+}
+
+/* Sidebar styles */
+.sidebar {
+    background-color: #17a2b8;
+    padding: 20px;
+    margin-bottom: 20px;
+    border: 1px solid #e3e3e3;
+    border-radius: 4px;
+}
+
+.sidebar h3 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar li {
+    margin-bottom: 10px;
+}

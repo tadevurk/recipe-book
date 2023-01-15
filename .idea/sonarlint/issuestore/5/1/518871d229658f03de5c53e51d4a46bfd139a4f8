@@ -1,0 +1,8 @@
+
+W	php:S1808"=Move this open curly brace to the beginning of the next line.(ää§Öúÿÿÿÿ
+R	php:S1808"=Move this open curly brace to the beginning of the next line.(®ïÄç
+Q	php:S1808"=Move this open curly brace to the beginning of the next line.(öÎ×R
+^	php:S1808"JPut one space between the closing parenthesis and the opening curly brace.(öÎ×R
+7	php:S1780"Remove this closing tag "?>".(Ö‘äÏúÿÿÿÿ
+;	php:S2003"&Replace "require" with "require_once".(¦•í¯
+a	php:S4833"LReplace "require" with namespace import mechanism through the "use" keyword.(¦•í¯

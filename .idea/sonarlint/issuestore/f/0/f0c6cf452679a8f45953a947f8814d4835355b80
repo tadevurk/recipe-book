@@ -1,0 +1,8 @@
+
+	php:S1808"eEither split this list into multiple lines, aligned at column "16" or put all arguments on line "15".(†Ú‡Å8Áü•ÈÕ0
+O	php:S1808".Move the closing parenthesis on the next line.(ˆÛ÷‚ùÿÿÿÿ8Áü•ÈÕ0
+zphp:S117	"ZRename this local variable "$db_host" to match the regular expression ^[a-z][a-zA-Z0-9]*$.(€†ºôÿÿÿÿÿ8Áü•ÈÕ0
+zphp:S117
+"ZRename this local variable "$db_name" to match the regular expression ^[a-z][a-zA-Z0-9]*$.(îÃí´ùÿÿÿÿ8Áü•ÈÕ0
+yphp:S117"^Rename this local variable "$db_username" to match the regular expression ^[a-z][a-zA-Z0-9]*$.(ÙÇÔÔ8Áü•ÈÕ0
+yphp:S117"^Rename this local variable "$db_password" to match the regular expression ^[a-z][a-zA-Z0-9]*$.(Ñ¨Ëˆ8Áü•ÈÕ0

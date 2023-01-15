@@ -1,0 +1,7 @@
+
+R	php:S1808"=Move this open curly brace to the beginning of the next line.(Ìö«ï
+_	php:S1808	"JPut one space between the closing parenthesis and the opening curly brace.(…¬Áˆ
+]	php:S1808	"HPut one space between this "switch" keyword and the opening parenthesis.(…¬Áˆ
+dphp:S101"PRename class "switchrouter" to match the regular expression ^[A-Z][a-zA-Z0-9]*$.(Ìö«ï
+;	php:S2003"&Replace "require" with "require_once".(‘‹¤
+a	php:S4833"LReplace "require" with namespace import mechanism through the "use" keyword.(‘‹¤

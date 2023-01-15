@@ -1,0 +1,12 @@
+
+^php:S103	"KSplit this 125 characters long line (which is greater than 120 authorized).(Õœ°)
+_php:S1038"KSplit this 134 characters long line (which is greater than 120 authorized).( î»—
+_php:S1039"KSplit this 140 characters long line (which is greater than 120 authorized).(÷Íñ‘
+R	php:S1808"=Move this open curly brace to the beginning of the next line.(ÿªÉƒ
+W	php:S1808"=Move this open curly brace to the beginning of the next line.(…»®ğüÿÿÿÿ
+P	php:S18085"6Put exactly one space after comma separated arguments.(ŞĞ¸«ÿÿÿÿÿ
+vphp:S117"bRename this local variable "$hashed_password" to match the regular expression ^[a-z][a-zA-Z0-9]*$.(ì„°Ô
+rphp:S117"_Rename this local variable "$hashed_input" to match the regular expression ^[a-z][a-zA-Z0-9]*$.(Ó¯ƒ$
+qphp:S117+"^Rename this parameter "$confirm_password" to match the regular expression ^[a-z][a-zA-Z0-9]*$.(ó¨	
+Zphp:S1120"FDefine and throw a dedicated exception instead of using a generic one.(”ïå˜
+f	php:S4833"QReplace "require_once" with namespace import mechanism through the "use" keyword.(ÏâÚ
