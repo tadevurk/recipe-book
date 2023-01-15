@@ -5,17 +5,16 @@ session_set_cookie_params(1800);
 session_start();
 
 // include the necessary files
-require_once __DIR__ . '/../../repository/authrepository.php';
+require_once __DIR__ . '/../../controllers/authcontroller.php';
 require_once __DIR__ . '/../../model/user.php';
 require_once __DIR__ . '/../../model/role.php';
 
 // create a new instance of the authrepository
-$registerRepository = new authrepository();
+$authcontroller = new authcontroller();
 
 // check if the user session variable is set
 if (isset($_SESSION['admin'])) {
     $user = $_SESSION['admin'];
-    //TODO: How to access the whole object?
     $userID = $_SESSION["adminID"];
 
     if (isset($_POST["register"])) {
@@ -34,7 +33,7 @@ if (isset($_SESSION['admin'])) {
         } else {
             // try to register the user
             try {
-                $newEditor = $registerRepository->register($firstName,$lastName,$username,$password,$confirm_password);
+                $newEditor = $authcontroller->register($firstName,$lastName,$username,$password,$confirm_password);
 
                 // registration was successful, redirect the user to the login page
                 header("Location: manageEditors");

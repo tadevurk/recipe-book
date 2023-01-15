@@ -2,12 +2,12 @@
 session_start();
 
 // include the necessary files
-require_once __DIR__ . '/../../repository/authrepository.php';
+require_once __DIR__ . '/../../controllers/authcontroller.php';
 require_once __DIR__ . '/../../model/user.php';
 require_once __DIR__ . '/../../model/role.php';
 
 // create a new instance of the authrepository
-$authRepository = new authrepository();
+$authController = new authcontroller();
 
 try {
     if (isset($_POST["registerNewUser"])){
@@ -20,7 +20,7 @@ try {
         $password = htmlspecialchars(trim($_POST['password']));
 
         // check the login
-        $loggedInUser = $authRepository->checkLogin($username, $password);
+        $loggedInUser = $authController->checkLogin($username, $password);
         if ($loggedInUser) {
             if ($loggedInUser->role === role::Admin){
                 $_SESSION['admin'] =  $loggedInUser;

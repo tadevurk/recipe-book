@@ -192,6 +192,7 @@ if (isset($_SESSION['message'])) {
         </div>
     </div>
 </div>
+</div>
 
 
 <!--Footer-->
@@ -211,6 +212,7 @@ if (isset($_SESSION['message'])) {
         </div>
     </div>
 </footer>
+
 
 </body>
 </html>

@@ -1,6 +1,8 @@
 <?php
 // Start the session
 session_start();
+require_once __DIR__ . '/../../model/user.php';
+require_once __DIR__ . '/../../controllers/usercontroller.php';
 
 if (isset($_POST['updateUserButton'])) {
     $_SESSION['message'] = "Updated successfully";

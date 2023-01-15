@@ -5,12 +5,12 @@ session_set_cookie_params(1800);
 session_start();
 
 // include the necessary files
-require_once __DIR__ . '/../../repository/authrepository.php';
+require_once __DIR__ . '/../../controllers/usercontroller.php';
 require_once __DIR__ . '/../../model/user.php';
 require_once __DIR__ . '/../../model/role.php';
 
 // create a new instance of the authrepository
-$registerRepository = new authrepository();
+$usercontroller = new usercontroller();
 
 // check if the user session variable is set
 if (isset($_SESSION['admin'])) {

@@ -31,7 +31,7 @@ class authrepository extends baserepository {
 
             // compare the hashed password from the database to the hashed input
             if (password_verify($password,$hashed_password)){
-                return new user($id,$firstname,$lastname,$username,$hashed_password,$role);
+                return new user($id,$firstname,$lastname,$username,$role);
             } else {
                 return false;
             }
@@ -68,75 +68,11 @@ class authrepository extends baserepository {
 
             $stmt->execute($data);
 
-            return new user($this->connection->lastInsertId(), $firstName,$lastName, $username, $hashed_password, 1);
+            return new user($this->connection->lastInsertId(), $firstName,$lastName, $username, 1);
 
         } catch (PDOException $e) {
             echo $e->getMessage();
         }
-    }
-
-    public function getAllEditors(){
-            // role 1 is the Editor
-            $stmt = $this->connection->prepare("SELECT * from user WHERE role=1");
-            $stmt->execute();
-
-            // Fetch rows as associative arrays
-            $stmt->setFetchMode(PDO::FETCH_ASSOC);
-            $users = $stmt->fetchAll();
-
-            $editors = [];
-            foreach ($users as $user) {
-                // Create a new user object and pass in the necessary arguments
-                $editors[] = new user(
-                    $user['id'],
-                    $user['firstname'],
-                    $user['lastname'],
-                    $user['username'],
-                    $user['hashed_password'],
-                    $user['role']
-                );
-            }
-            return $editors;
-        }
-
-    public function deleteUser($id){
-        $stmt = $this->connection->prepare("DELETE FROM user WHERE id = :id");
-        $stmt->bindValue(':id', $id);
-
-        $stmt->execute();
-    }
-
-    public function getUserByID($id){
-        $stmt = $this->connection->prepare("SELECT * FROM user WHERE id=:id LIMIT 1");
-
-        $stmt->bindValue(':id',$id);
-
-        $stmt->execute();
-
-        $user = $stmt->fetch(PDO::FETCH_OBJ);
-
-        $user = new user(
-            $user->id,
-            $user->firstname,
-            $user->lastname,
-            $user->username,
-            $user->hashed_password,
-            $user->role
-        );
-
-        return $user;
-    }
-
-    public function updateUser(user $user){
-        $stmt = $this->connection->prepare("UPDATE user SET firstname=:firstname, lastname=:lastname, username=:username WHERE id=:user_id LIMIT 1");
-
-        $data = [
-            ':firstname' => $user->firstName,
-            ':lastname'=>$user->lastName,
-            ':username'=>$user->username,
-            ':user_id'=>$user->id
-        ];
-        $stmt->execute($data);
     }
 }
 
