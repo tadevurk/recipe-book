@@ -18,13 +18,10 @@ if (isset($_SESSION['user']) || isset($_SESSION['admin']) ) {
 
     if (isset($_SESSION['user'])){
         $user = $_SESSION['user'];
-        //TODO: How to access the whole object?
-        $userID = $_SESSION["userID"];
     }
     if (isset($_SESSION['admin'])){
         $admin = $_SESSION['admin'];
         $adminID = $_SESSION['adminID'];
-        echo $_SESSION['adminID'];
     }
 
 
@@ -69,24 +66,21 @@ if (isset($_SESSION['message'])) {
 
       <!-- Bootstrap CSS -->
       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-
       <title>Homemade Recipe</title>
   </head>
   <body>
 
   <!-- Navigation -->
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <nav class="navbar navbar-expand-md navbar-light bg-light">
+      <div class="container-fluid">
       <a class="navbar-brand" href="index"><img src="/Homemade.png" alt="Logo" width="100" height="100"></a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav mr-auto">
               <li class="nav-item active">
                   <a class="nav-link" href="index">Home</a>
-              </li>
-              <li class="nav-item">
-                  <a class="nav-link" href="recipe">Recipes</a>
               </li>
               <!-- Add the Add Recipe link if the user is logged in -->
               <?php if (isset($_SESSION['user'])) { ?>
@@ -100,7 +94,7 @@ if (isset($_SESSION['message'])) {
                       <a class="nav-link" href="addrecipe" style="text-decoration: underline">Add Recipe</a>
                   </li>
                   <li class="nav-item">
-                      <a class="nav-link" href="addrecipe">Editor Management</a>
+                      <a class="nav-link" href="manageeditors">Editor Management</a>
                   </li>
                   <?php
               }
@@ -109,10 +103,6 @@ if (isset($_SESSION['message'])) {
                   <a class="nav-link" href="aboutme">About Me</a>
               </li>
           </ul>
-          <form class="form-inline my-2 my-lg-0">
-              <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-              <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-          </form>
           <ul class="navbar-nav">
               <!-- Add login and signup links here -->
               <?php if (!isset($_SESSION['user']) && !isset($_SESSION['admin'])) { ?>
@@ -128,6 +118,8 @@ if (isset($_SESSION['message'])) {
                   </li>
               <?php } ?>
           </ul>
+      </div>
+      </div>
   </nav>
 
     <div class="container mt-5">
@@ -232,5 +224,7 @@ if (isset($_SESSION['message'])) {
           }
       }, 200));
   </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
   </body>
 </html>

@@ -20,48 +20,55 @@ session_start();
 <body>
 
 <!-- Navigation -->
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="index"><img src="/Homemade.png" alt="Logo" width="100" height="100"></a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="index">Home</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="recipe">Recipes</a>
-            </li>
-            <!-- Add the Add Recipe link if the user is logged in -->
-            <?php if (isset($_SESSION['user'])) { ?>
-                <li class="nav-item">
-                    <a class="nav-link" href="addrecipe">Add Recipe</a>
+<nav class="navbar navbar-expand-md navbar-light bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="index"><img src="/Homemade.png" alt="Logo" width="100" height="100"></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="index">Home</a>
                 </li>
-            <?php } ?>
-            <li class="nav-item">
-                <a class="nav-link" href="aboutme" style="text-decoration: underline">About Me</a>
-            </li>
-        </ul>
-        <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
-        <ul class="navbar-nav">
-            <!-- Add login and signup links here -->
-            <?php if (!isset($_SESSION['user'])) { ?>
+                <!-- Add the Add Recipe link if the user is logged in -->
+                <?php if (isset($_SESSION['user'])) { ?>
+                    <li class="nav-item">
+                        <a class="nav-link" href="addrecipe" style="text-decoration: underline">Add Recipe</a>
+                    </li>
+                    <?php
+                }
+                if (isset($_SESSION['admin'])){?>
+                    <li class="nav-item">
+                        <a class="nav-link" href="addrecipe">Add Recipe</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="manageeditors">Editor Management</a>
+                    </li>
+                    <?php
+                }
+                ?>
                 <li class="nav-item">
-                    <a class="nav-link" href="login">Login</a>
+                    <a class="nav-link" href="aboutme" style="text-decoration: underline">About Me</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="register">Sign Up</a>
-                </li>
-            <?php } else { ?>
-                <li class="nav-item">
-                    <a class="nav-link" href="logout">Logout</a>
-                </li>
-            <?php } ?>
-        </ul>
+            </ul>
+            <ul class="navbar-nav">
+                <!-- Add login and signup links here -->
+                <?php if (!isset($_SESSION['user']) && !isset($_SESSION['admin'])) { ?>
+                    <li class="nav-item">
+                        <a class="nav-link" href="login">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="register">Sign Up</a>
+                    </li>
+                <?php } else { ?>
+                    <li class="nav-item">
+                        <a class="nav-link" href="logout">Logout</a>
+                    </li>
+                <?php } ?>
+            </ul>
+        </div>
+    </div>
 </nav>
 
 <!-- Page Content -->
@@ -96,6 +103,9 @@ session_start();
 
 
 <?php include 'footer.php';?>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
 
 </body>
 </html>

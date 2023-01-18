@@ -24,6 +24,7 @@ public function insertRecipe(recipe $recipe, int $userID){
                                                 VALUES (:recipe_id,:ingredients_id,:quantity,:unit)");
 
     foreach ($recipe->ingredients as $ingredient){
+
         $dataIngredient = [
             ':recipe_id' => $lastInsertedID,
             ':ingredients_id' => $this->getIngredientByName($ingredient['ingredient']),
@@ -34,6 +35,7 @@ public function insertRecipe(recipe $recipe, int $userID){
     }
 }
 public function getIngredientByName($name){
+    require_once ("ingredientrepository.php");
     $stmt = $this->connection->prepare("SELECT id FROM ingredients WHERE name=:name");
     $data = [':name'=>"$name"];
     $stmt->execute($data);
@@ -41,8 +43,14 @@ public function getIngredientByName($name){
     if($stmt->rowCount() > 0) {
         return $stmt->fetchColumn();
     }
-    return null;
+    else {
+        // ingredient is not in the database, insert it
+        $stmt = $this->connection->prepare("INSERT INTO ingredients (name) VALUES (:name)");
+        $stmt->execute([':name' => $name]);
+        return $this->connection->lastInsertId();
+    }
 }
+
 
 public function getAllRecipe(){
     $stmt = $this->connection->prepare("SELECT * from recipe");

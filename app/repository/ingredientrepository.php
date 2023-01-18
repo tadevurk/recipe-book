@@ -17,22 +17,4 @@ class ingredientrepository extends baserepository{
             echo $e->getMessage();
         }
     }
-
-    // Insert ingredient name which doesn't exist in the ingredients database
-    public function post(string $name){
-        require("../model/ingredient.php");
-
-        try {
-
-            $stmt = $this->connection->prepare("INSERT INTO ingredients
-                                        (name)
-                                        VALUES
-                                        (:name");
-
-            $data = [':name'=>$name];
-            $stmt->execute($data);
-        } catch (PDOException $e) {
-            echo $e->getMessage();
-        }
-    }
 }
