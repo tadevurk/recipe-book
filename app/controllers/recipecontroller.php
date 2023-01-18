@@ -69,12 +69,57 @@ class recipecontroller
 
             $recipeRepository->updateRecipe($recipe);
 
+            // New code
+
+            // Array from the form
+            $ingredientUpdateFormArray = [];
+
+            foreach ($_POST['ingredient'] as $key=>$ingredient){
+                $unit = htmlspecialchars($_POST['unit'][$key]);
+                $quantity = htmlspecialchars($_POST['quantity'][$key]);
+                array_push($ingredientUpdateFormArray, array('ingredient' => $ingredient, 'unit' => $unit, 'quantity' => $quantity));
+            }
+
+            // Existing recipe ingredients
+            $recipe_ingredients = $this->getAllRecipeIngredients($recipe->id);
+
+            // Loop through ingredients from form submission
+            foreach ($ingredientUpdateFormArray as $ingredient) {
+                // Check if ingredient already exists in recipe_ingredients table
+/*                $ingredient_exists = false;
+                foreach ($recipe_ingredients as $existing_ingredient) {
+                    if ($ingredient['ingredient'] == $existing_ingredient['name']) {
+                        // Update quantity and unit in recipe_ingredients table
+                        $this->updateIngredientInRecipe($recipe->id,$existing_ingredient);
+                        echo $existing_ingredient['name'];
+                        echo $ingredient['ingredient'];
+                        $ingredient_exists = true;
+                        break;
+                    }
+                }
+                // If ingredient doesn't exist in recipe_ingredients table, insert it
+                /*if (!$ingredient_exists) {*/
+                    require_once("../repository/reciperepository.php");
+                    $recipeRepository = new reciperepository();
+                    $ingredient_id = $recipeRepository->getIngredientByName($ingredient['ingredient']);
+
+                    $recipeRepository->insertRecipeIngredients($recipe,$recipe->id);
+                //}
+            }
+
+            // Until here..
+
             $url = "recipe";
             header("Location:$url");
             exit();
         }
     }
 
+    public function updateIngredientInRecipe($recipe_id, $existing_ingredient){
+        require_once("../repository/reciperepository.php");
+        $recipeRepository = new reciperepository();
+        $recipeRepository->updateIngredientInRecipe($recipe_id,$existing_ingredient);
+    }
     public function getAllRecipeIngredients($recipe_id){
         require_once("../repository/reciperepository.php");
         $recipeRepository = new reciperepository();

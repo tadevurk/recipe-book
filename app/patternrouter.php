@@ -28,12 +28,17 @@ class PatternRouter
         $defaultcontroller = 'home';
         $defaultmethod = 'index';
 
+
         // ignore query parameters
         $uri = $this->stripParameters($uri);
 
         // read controllers/method names from URL
         $explodedUri = explode('/', $uri);
 
+        if ($explodedUri[0] == "home" && !isset($explodedUri[1])) {
+            header("Location: home/recipe");
+            exit;
+        }
         if (!isset($explodedUri[0]) || empty($explodedUri[0])) {
             $explodedUri[0] = $defaultcontroller;
         }
@@ -42,6 +47,7 @@ class PatternRouter
         if (!isset($explodedUri[1]) || empty($explodedUri[1])) {
             $explodedUri[1] = $defaultmethod;
         }
+
         $methodName = $explodedUri[1];
 
         // load the file with the controllers class

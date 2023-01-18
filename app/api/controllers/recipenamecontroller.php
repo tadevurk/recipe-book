@@ -15,7 +15,7 @@ class recipenamecontroller{
         header('Access-Control-Allow-Headers: *');
         header('Access-Control-Allow-Methods: *');
 
-        // Respond to a POST request to /api/article
+        // Respond to a POST request to /api/recipename
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // read JSON from the request, return as a string
             $body = file_get_contents('php://input');

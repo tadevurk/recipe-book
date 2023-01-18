@@ -18,6 +18,7 @@ if (isset($_SESSION['user']) || isset($_SESSION['admin']) ) {
 
     if (isset($_SESSION['user'])){
         $user = $_SESSION['user'];
+        $userID = $_SESSION['userID'];
     }
     if (isset($_SESSION['admin'])){
         $admin = $_SESSION['admin'];
@@ -153,7 +154,7 @@ if (isset($_SESSION['message'])) {
       </form>
     </div>
 
-  <?php include 'footer.php';?>
+  <?php require_once "./footer.php";?>
 
   <script>
       let id_number = 0;

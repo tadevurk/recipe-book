@@ -164,23 +164,7 @@ if (isset($_SESSION['register_error'])) {
 </div>
 
 
-<!--Footer-->
-<footer class="bg-dark py-3" style="left: 0; bottom: 0; width: 100%; margin-top: 10px;">
-    <div class="container">
-        <div class="row justify-content-between">
-            <div class="col-auto mb-2">
-                <p class="text-white bg-dark">Vedat Türk End Assignment</p>
-            </div>
-            <div class="col-auto mb-2">
-                <ul class="list-inline text-primary">
-                    <li class="list-inline-item"><a href="index">Home</a></li>
-                    <li class="list-inline-item"><a href="aboutme">About</a></li>
-                    <li class="list-inline-item"><a href="ContactMe">Contact</a></li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</footer>
+<?php require_once "./footer.php";?>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 

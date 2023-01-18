@@ -20,6 +20,8 @@ class baserepository
         }
     }
 
+
+    // 000WebHostApp
 /*    public function __construct()
     {
         $db_host = "localhost";

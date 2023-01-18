@@ -17,9 +17,11 @@ public function insertRecipe(recipe $recipe, int $userID){
     ];
 
     $stmt->execute($data);
-
     $lastInsertedID = $this->connection->lastInsertId();
+    $this->insertRecipeIngredients($recipe,$lastInsertedID);
+}
 
+public function insertRecipeIngredients(recipe $recipe, $lastInsertedID ){
     $stmtIngredient =$this->connection->prepare("INSERT into recipe_ingredients (recipe_id, ingredients_id, quantity, unit) 
                                                 VALUES (:recipe_id,:ingredients_id,:quantity,:unit)");
 
@@ -34,6 +36,7 @@ public function insertRecipe(recipe $recipe, int $userID){
         $stmtIngredient->execute($dataIngredient);
     }
 }
+
 public function getIngredientByName($name){
     require_once ("ingredientrepository.php");
     $stmt = $this->connection->prepare("SELECT id FROM ingredients WHERE name=:name");
@@ -44,7 +47,7 @@ public function getIngredientByName($name){
         return $stmt->fetchColumn();
     }
     else {
-        // ingredient is not in the database, insert it
+        // ingredient is not in the ingredients database, insert it
         $stmt = $this->connection->prepare("INSERT INTO ingredients (name) VALUES (:name)");
         $stmt->execute([':name' => $name]);
         return $this->connection->lastInsertId();
@@ -62,7 +65,7 @@ public function getAllRecipe(){
 }
 
 public function getAllRecipeIngredients($recipe_id){
-    $stmt = $this->connection->prepare("SELECT I.name, R.quantity, R.unit FROM `recipe_ingredients` as R
+    $stmt = $this->connection->prepare("SELECT I.id, I.name, R.quantity, R.unit FROM `recipe_ingredients` as R
                                                 JOIN ingredients as I WHERE I.id = R.ingredients_id AND R.recipe_id=:recipe_id;");
     $data = [':recipe_id'=>$recipe_id];
     $stmt->execute($data);
@@ -121,6 +124,17 @@ public function updateRecipe(recipe $recipe){
         ':cuisine'=>$recipe->cuisine,
         ':instructions'=>$recipe->instructions,
         ':recipe_id'=>$recipe->id
+    ];
+    $stmt->execute($data);
+}
+
+public function updateIngredientInRecipe($recipe_id, $existing_ingredient){
+    $stmt = $this->connection->prepare("UPDATE recipe_ingredients SET quantity=:quantity, unit=:unit WHERE recipe_id=:recipe_id LIMIT 1");
+
+    $data = [
+        ':quantity' => $existing_ingredient['quantity'],
+        ':unit'=>$existing_ingredient['unit'],
+        ':recipe_id'=>$recipe_id
     ];
     $stmt->execute($data);
 }

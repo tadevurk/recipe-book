@@ -4,7 +4,6 @@ class ingredient implements JsonSerializable
 {
 public function jsonSerialize(): mixed
 {
-    // TODO: Implement jsonSerialize() method.
     return get_object_vars($this);
 }
 

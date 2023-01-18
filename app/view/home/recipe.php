@@ -56,7 +56,7 @@ if (isset($_SESSION['message'])) {
                 <!-- Add the Add Recipe link if the user is logged in -->
                 <?php if (isset($_SESSION['user'])) { ?>
                     <li class="nav-item">
-                        <a class="nav-link" href="addrecipe" style="text-decoration: underline">Add Recipe</a>
+                        <a class="nav-link" href="addrecipe">Add Recipe</a>
                     </li>
                     <?php
                 }
@@ -126,6 +126,8 @@ if (isset($_SESSION['message'])) {
             </form>
         </div>
     </div>
+
+
     <div class="row mt-5">
         <?php
         // Check if the form has been submitted
@@ -161,17 +163,28 @@ if (isset($_SESSION['message'])) {
                             <div class="card-body">
                                 <div class="col-md-8">
                                     <h6 style="color: #17a2b8">Ingredients:</h6>
-                                    <ul class="list-group list-group-flush">
+                                    <table class="table">
+                                        <thead>
+                                        <tr>
+                                            <th>Unit</th>
+                                            <th>Quantity</th>
+                                            <th>Name</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
                                         <?php
                                         $recipe_ingredients = $recipecontroller->getAllRecipeIngredients($recipe->id);
                                         foreach ($recipe_ingredients as $ingredient){?>
-                                            <li class="list-group-item"><?= $ingredient['name']?></li>
-                                            <li class="list-group-item"><?= $ingredient['quantity']?></li>
-                                            <li class="list-group-item"><?= $ingredient['unit']?></li>
-                                        <?php
+                                            <tr>
+                                                <td><?= $ingredient['unit']?></td>
+                                                <td><?= $ingredient['quantity']?></td>
+                                                <td><?= $ingredient['name']?></td>
+                                            </tr>
+                                            <?php
                                         }
                                         ?>
-                                    </ul>
+                                        </tbody>
+                                    </table>
                                 </div>
                                 <div class="col-md-12">
                                     <h6 style="color: #17a2b8">Instructions:</h6>
@@ -203,7 +216,7 @@ if (isset($_SESSION['message'])) {
 </div>
 
 
-<?php include 'footer.php';?>
+<?php require_once "./footer.php";?>
 
 <script>
     //Autocomplete
