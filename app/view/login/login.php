@@ -10,6 +10,16 @@ require_once __DIR__ . '/../../model/role.php';
 $authController = new authcontroller();
 
 try {
+    if (isset($_SESSION['admin'])) {
+        header("Location: /home/manageeditors");
+        exit();
+    }
+
+    if (isset($_SESSION['user'])) {
+        header("Location: /home/recipe");
+        exit();
+    }
+
     if (isset($_POST["registerNewUser"])){
         header("location:register");
     }
@@ -64,29 +74,6 @@ try {
     <title>Homemade Recipe Login</title>
 </head>
 <body>
-<!--<div class="container mt-5" style="width:500px;">
-    <div class="card">
-        <div class="card-header">
-            <h3>Homemade Recipe Login Page</h3>
-        </div>
-        <form method="post">
-            <label>Username</label>
-            <input type="text" name="username" class="form-control" />
-            <br />
-            <label>Password</label>
-            <input type="password" name="password" class="form-control" />
-            <br />
-            <input type="submit" name="login" class="btn btn-outline-success" value="Login" />
-        </form>
-    </div>
-
-   <?php
-/*    if(isset($message))
-    {
-        echo '<label class="text-danger">'.$message.'</label>';
-    }
-    */?>
-</div>-->
 
 <section class="h-100 gradient-form" style="background-color: #eee;">
     <div class="container py-5 h-100">

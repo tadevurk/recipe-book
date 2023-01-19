@@ -24,7 +24,7 @@ class usercontroller{
             }
 
             $editors = $userrepository->getAllEditors();
-            require("../view/admin/manage_editors.php");
+            header("Location: /home/manageeditors");
         }
     }
 

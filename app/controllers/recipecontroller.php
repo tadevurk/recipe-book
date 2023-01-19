@@ -35,12 +35,10 @@ class recipecontroller
             try {
                 $recipeRepository->deleteRecipe($recipe_id);
                 $_SESSION['message'] = "Deleted successfully";
+                header("Location: /home/recipe");
             }catch (PDOException $e){
                 echo $e->getMessage();
             }
-
-            $recipes =  $recipeRepository->getAllRecipe();
-            require ("../view/home/recipe.php");
         }
     }
 

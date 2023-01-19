@@ -9,7 +9,7 @@
                   <ul class="list-inline text-primary">
                       <li class="list-inline-item"><a href="index">Home</a></li>
                       <li class="list-inline-item"><a href="aboutme">About</a></li>
-                      <li class="list-inline-item"><a href="ContactMe">Contact</a></li>
+                      <li class="list-inline-item"><a href="contact">Contact</a></li>
                   </ul>
               </div>
           </div>

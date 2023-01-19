@@ -67,6 +67,9 @@ else{
                 <li class="nav-item">
                     <a class="nav-link" href="aboutme"">About Me</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="contact">Contact</a>
+                </li>
             </ul>
             <ul class="navbar-nav">
                 <!-- Add login and signup links here -->
@@ -87,23 +90,57 @@ else{
     </div>
 </nav>
 
+<!--CSS Style -->
 <style>
-    .table {
-        background-color: white;
-        border-radius: 10px;
-        box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.1);
+table {
+    width: 100%;
+}
+thead th {
+    font-weight: bold;
+}
+tbody td {
+    text-align: center;
+}
+@media only screen and (max-width: 600px) {
+    thead {
+        display: none;
     }
-    .btn {
-        border-radius: 10px;
-        box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.1);
+    tr:nth-of-type(2n) {
+        background-color: inherit;
     }
-    .btn-lg {
-        padding: 0.75rem 1.5rem;
-        font-size: 1.25rem;
-        border-radius: 0.3rem;
+    tr td:first-child {
+        background: #f0f0f0;
+        font-weight: bold;
+        font-size: 1.3em;
     }
+    tbody td {
+        display: block;
+        text-align: left;
+    }
+    tbody td:before {
+        content: attr(data-th);
+        font-weight: bold;
+        display: block;
+    }
+}
+.table {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.1);
+}
+.btn {
+    border-radius: 10px;
+    box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.1);
+}
+.btn-lg {
+    padding: 0.75rem 1.5rem;
+    font-size: 1.25rem;
+    border-radius: 0.3rem;
+}
+
 </style>
 
+<!--Table-->
 <div class="container-fluid">
     <h1 class="text-center mt-3">Manage Editors</h1>
     <div class="row mt-3">
@@ -123,16 +160,20 @@ else{
                 <!-- Display a table row for each editor -->
                 <?php foreach ($editors as $editor) { ?>
                     <tr>
-                        <td><?php echo $editor->id; ?></td>
-                        <td><?php echo $editor->firstName; ?></td>
-                        <td><?php echo $editor->lastName; ?></td>
-                        <td><?php echo $editor->username; ?></td>
+<!--                        <td><?php /*echo $editor->id; */?></td>
+                        <td><?php /*echo $editor->firstName; */?></td>
+                        <td><?php /*echo $editor->lastName; */?></td>
+                        <td><?php /*echo $editor->username; */?></td>-->
+                        <td data-th="User ID"><?php echo $editor->id; ?></td>
+                        <td data-th="Name"><?php echo $editor->firstName; ?></td>
+                        <td data-th="Last Name"><?php echo $editor->lastName; ?></td>
+                        <td data-th="Username"><?php echo $editor->username; ?></td>
                         <?php if ($editor->role == 1){
                             ?><td>Editor</td><?php
                         }?>
                         <td>
                             <form action="deleteUser" method="POST">
-                                <button type="submit" name="delete_user" value="<?=$editor->id;?>" class="btn btn-danger">Delete</button>
+                                <button type="submit" name="delete_user" value="<?=$editor->id;?>" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this user?');">Delete</button>
                                 <a href="updateUser?id=<?php echo $editor->id ?>" class="btn btn-primary">Update</a>
                             </form>
                         </td>
@@ -141,7 +182,7 @@ else{
                 </tbody>
             </table>
             <!-- Add Editors button -->
-            <div class="row mt-3">
+            <div class="row mt-3" style="padding-right: 9%; padding-bottom: 1%">
                 <div class="col-12 text-right">
                     <a href="register" class="btn btn-success btn-lg">Add Editor</a>
                 </div>

@@ -73,6 +73,9 @@ if (isset($_SESSION['message'])) {
                 <li class="nav-item">
                     <a class="nav-link" href="aboutme">About Me</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="contact">Contact</a>
+                </li>
             </ul>
             <ul class="navbar-nav">
                 <!-- Add login and signup links here -->
@@ -192,17 +195,17 @@ if (isset($_SESSION['message'])) {
                                 </div>
                                 <?php
                                 // Check if the user is logged in
-                                if (isset($_SESSION['user'])){
+                                if (isset($_SESSION['user']) || isset($_SESSION['admin'])){
                                     // Display the update, delete, and add recipe buttons
                                     ?>
                                     <hr>
                                     <form action="deleteRecipe" method="POST">
-                                        <button type="submit" name="delete_recipe" value="<?=$recipe->id;?>" class="btn btn-danger">Delete</button>
+                                        <!--<button type="submit" name="delete_recipe" value="<?php /*=$recipe->id;*/?>" class="btn btn-danger">Delete</button>-->
+                                        <button type="submit" name="delete_recipe" value="<?=$recipe->id;?>" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this recipe?');">Delete</button>
                                         <a href="updateRecipe?id=<?php echo $recipe->id ?>" class="btn btn-primary">Update</a>
                                     </form>
                                     <?php
-                                }
-                                ?>
+                                } ?>
                             </div>
                         </div>
                     </div>

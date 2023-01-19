@@ -61,6 +61,11 @@ class homecontroller
         require ("../view/home/aboutme.php");
     }
 
+    public function contact()
+    {
+        require ("../view/home/contact.php");
+    }
+
     public function logout()
     {
         require ("../view/login/logout.php");

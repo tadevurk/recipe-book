@@ -1,6 +1,6 @@
 <?php
 // Set the session cookie to expire after 10 seconds
-session_set_cookie_params(1800);
+//session_set_cookie_params(1800);
 
 session_start();
 require_once __DIR__ . '/../../model/user.php';
@@ -22,7 +22,7 @@ if (isset($_SESSION['user']) || isset($_SESSION['admin']) ) {
     }
     if (isset($_SESSION['admin'])){
         $admin = $_SESSION['admin'];
-        $adminID = $_SESSION['adminID'];
+        $userID = $_SESSION['adminID'];
     }
 
 
@@ -102,6 +102,9 @@ if (isset($_SESSION['message'])) {
               ?>
               <li class="nav-item">
                   <a class="nav-link" href="aboutme">About Me</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="contact">Contact</a>
               </li>
           </ul>
           <ul class="navbar-nav">

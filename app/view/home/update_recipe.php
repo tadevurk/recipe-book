@@ -62,6 +62,9 @@ if (isset($_SESSION['message'])) {
                 <li class="nav-item">
                     <a class="nav-link" href="aboutme">About Me</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="contact">Contact</a>
+                </li>
             </ul>
             <ul class="navbar-nav">
                 <!-- Add login and signup links here -->
