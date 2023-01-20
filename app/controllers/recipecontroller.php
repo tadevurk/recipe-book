@@ -83,26 +83,11 @@ class recipecontroller
 
             // Loop through ingredients from form submission
             foreach ($ingredientUpdateFormArray as $ingredient) {
-                // Check if ingredient already exists in recipe_ingredients table
-/*                $ingredient_exists = false;
-                foreach ($recipe_ingredients as $existing_ingredient) {
-                    if ($ingredient['ingredient'] == $existing_ingredient['name']) {
-                        // Update quantity and unit in recipe_ingredients table
-                        $this->updateIngredientInRecipe($recipe->id,$existing_ingredient);
-                        echo $existing_ingredient['name'];
-                        echo $ingredient['ingredient'];
-                        $ingredient_exists = true;
-                        break;
-                    }
-                }
-                // If ingredient doesn't exist in recipe_ingredients table, insert it
-                /*if (!$ingredient_exists) {*/
                     require_once("../repository/reciperepository.php");
                     $recipeRepository = new reciperepository();
                     $ingredient_id = $recipeRepository->getIngredientByName($ingredient['ingredient']);
 
                     $recipeRepository->insertRecipeIngredients($recipe,$recipe->id);
-                //}
             }
 
             // Until here..

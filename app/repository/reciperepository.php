@@ -90,14 +90,6 @@ public function getAllRecipeNames(string $name)
     }
 }
 
-public function getUniqueCuisine(){
-    $stmt = $this->connection->prepare("SELECT DISTINCT cuisine FROM recipe ORDER BY cuisine");
-    $stmt->execute();
-
-    $uniqueCuisines = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    return $uniqueCuisines;
-}
-
 public function deleteRecipe($id){
     $stmt = $this->connection->prepare("DELETE FROM recipe WHERE id = :id");
     $stmt->bindValue(':id', $id);
