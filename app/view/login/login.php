@@ -93,11 +93,11 @@ try {
                                 <form method="post">
                                     <p>Please login to your editor/admin account</p>
                                     <div class="form-outline mb-4">
-                                        <input type="text" name="username" class="form-control" />
+                                        <input type="text" name="username" class="form-control" autocomplete="off"/>
                                         <label class="form-label" for="form2Example11">Username</label>
                                     </div>
                                     <div class="form-outline mb-4">
-                                        <input type="password" name="password" class="form-control" />
+                                        <input type="password" name="password" class="form-control" autocomplete="off"/>
                                         <label class="form-label" for="form2Example22">Password</label>
                                     </div>
                                         <input type="submit" name="login" class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" value="Login" />

@@ -96,6 +96,11 @@ if (isset($_SESSION['message'])) {
     </div>
 </nav>
 
+<div class="header-image" style="width: 100%; display: block">
+    <img src="/recipe3.png" alt="Homemade Recipe Picture" style="width: 100%; height: auto;">
+</div>
+
+<!--Body of the page-->
 <div class="container mt-5">
 <div class="container mt-5">
     <div class="row">
@@ -107,9 +112,10 @@ if (isset($_SESSION['message'])) {
                         <option value="">All</option>
                         <?php
                         // Get the unique cuisines from the repository
-                        foreach ($recipes as $recipe)
+                        $uniqueCuisines = array_unique(array_column($recipes,'cuisine'));
+                        foreach ($uniqueCuisines as $cuisine)
                         {?>
-                            <option value="<?=$recipe->cuisine?>"><?=$recipe->cuisine?></option>
+                            <option value="<?=$cuisine?>"><?=$cuisine?></option>
                             <?php
                         }
                         ?>
@@ -119,7 +125,7 @@ if (isset($_SESSION['message'])) {
             </form>
         </div>
         <div class="col-md-4">
-            <form method="post" action="">
+            <form method="post" action=""">
                 <div class="form-group">
                     <label for="recipeSearch">Search by Recipe Name:</label>
                     <input id="recipe-search" type="text" class="form-control" name="recipeName" list="suggestions-list" autocomplete="off">
