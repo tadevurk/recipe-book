@@ -67,8 +67,6 @@ class recipecontroller
 
             $recipeRepository->updateRecipe($recipe);
 
-            // New code
-
             // Array from the form
             $ingredientUpdateFormArray = [];
 
@@ -83,37 +81,9 @@ class recipecontroller
             $recipe->ingredients = $ingredientUpdateFormArray;
             $updated_recipe_ingredients = array();
 
-            foreach ($ingredientUpdateFormArray as $form_ingredient) {
-                $found = false;
-                // Check if the ingredient already exists in existing recipe ingredients
-                foreach ($recipe_ingredients as $existing_ingredient) {
-                    if ($form_ingredient['ingredient'] == $existing_ingredient['name']) {
-                        $recipeRepository->updateRecipeIngredient($recipe->id,$existing_ingredient['id'], $form_ingredient['unit'], $form_ingredient['quantity']);
-                        $found = true;
-                    }
-                }
-                if (!$found) {
-                    // Ingredient does not exist, add new ingredient
-                    $updated_recipe_ingredients[] = array(
-                        'name' => $form_ingredient['ingredient'],
-                        'unit' => $form_ingredient['unit'],
-                        'quantity' => $form_ingredient['quantity']
-                    );
-                }
-            }
+            $updated_recipe_ingredients = $this->updateRecipeIngredientsFromForm($ingredientUpdateFormArray, $recipe_ingredients, $recipeRepository, $recipe, $updated_recipe_ingredients);
 
-            foreach ($recipe_ingredients as $existing_ingredient) {
-                $found = false;
-                foreach ($ingredientUpdateFormArray as $form_ingredient) {
-                    if ($form_ingredient['ingredient'] == $existing_ingredient['name']) {
-                        $found = true;
-                        break;
-                    }
-                }
-                if (!$found) {
-                    $recipeRepository->deleteRecipeIngredient($recipe->id, $existing_ingredient['id']);
-                }
-            }
+            $this->checkIfIngredientNotInTheFormAnyMore($recipe_ingredients, $ingredientUpdateFormArray, $recipeRepository, $recipe);
 
             foreach ($updated_recipe_ingredients as $ingredient) {
                 //echo "Ingredient Name: ".$ingredient['name']." Unit: ".$ingredient['unit']." Quantity: ".$ingredient['quantity']."\n";
@@ -123,23 +93,54 @@ class recipecontroller
                 $recipeRepository->addRecipeIngredients($recipe->id,$ingredient_id,$ingredient['unit'],$ingredient['quantity']);
             }
 
-            // Until here..
-
             $url = "recipe";
             header("Location:$url");
             exit();
         }
     }
 
-
-    public function updateIngredientInRecipe($recipe_id, $existing_ingredient){
-        require_once("../repository/reciperepository.php");
-        $recipeRepository = new reciperepository();
-        $recipeRepository->updateIngredientInRecipe($recipe_id,$existing_ingredient);
-    }
     public function getAllRecipeIngredients($recipe_id){
         require_once("../repository/reciperepository.php");
         $recipeRepository = new reciperepository();
         return $recipeRepository->getAllRecipeIngredients($recipe_id);
+    }
+
+    public function checkIfIngredientNotInTheFormAnyMore(bool|array $recipe_ingredients, array $ingredientUpdateFormArray, reciperepository $recipeRepository, recipe $recipe): void
+    {
+        foreach ($recipe_ingredients as $existing_ingredient) {
+            $found = false;
+            foreach ($ingredientUpdateFormArray as $form_ingredient) {
+                if ($form_ingredient['ingredient'] == $existing_ingredient['name']) {
+                    $found = true;
+                    break;
+                }
+            }
+            if (!$found) {
+                $recipeRepository->deleteRecipeIngredient($recipe->id, $existing_ingredient['id']);
+            }
+        }
+    }
+
+    public function updateRecipeIngredientsFromForm(array $ingredientUpdateFormArray, bool|array $recipe_ingredients, reciperepository $recipeRepository, recipe $recipe, array $updated_recipe_ingredients): array
+    {
+        foreach ($ingredientUpdateFormArray as $form_ingredient) {
+            $found = false;
+            // Check if the ingredient already exists in existing recipe ingredients
+            foreach ($recipe_ingredients as $existing_ingredient) {
+                if ($form_ingredient['ingredient'] == $existing_ingredient['name']) {
+                    $recipeRepository->updateRecipeIngredient($recipe->id, $existing_ingredient['id'], $form_ingredient['unit'], $form_ingredient['quantity']);
+                    $found = true;
+                }
+            }
+            if (!$found) {
+                // Ingredient does not exist, add new ingredient
+                $updated_recipe_ingredients[] = array(
+                    'name' => $form_ingredient['ingredient'],
+                    'unit' => $form_ingredient['unit'],
+                    'quantity' => $form_ingredient['quantity']
+                );
+            }
+        }
+        return $updated_recipe_ingredients;
     }
 }

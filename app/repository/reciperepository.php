@@ -21,6 +21,7 @@ public function insertRecipe(recipe $recipe, int $userID){
     $this->insertRecipeIngredients($recipe,$lastInsertedID);
 }
 
+// While adding the ingredients
 public function insertRecipeIngredients(recipe $recipe, $lastInsertedID ){
     $stmtIngredient =$this->connection->prepare("INSERT into recipe_ingredients (recipe_id, ingredients_id, quantity, unit) 
                                                 VALUES (:recipe_id,:ingredients_id,:quantity,:unit)");
@@ -64,7 +65,6 @@ public function updateRecipeIngredient($recipeID, $ingredient_id, $unit, $quanti
     $stmt->execute($dataIngredient);
 }
 
-
 // if the old ones removed
 public function deleteRecipeIngredient($recipeID, $ingredient_id) {
     $query = "DELETE FROM recipe_ingredients WHERE recipe_id = :recipe_id AND ingredients_id = :ingredients_id";
@@ -73,7 +73,6 @@ public function deleteRecipeIngredient($recipeID, $ingredient_id) {
     $stmt->bindValue(':ingredients_id', $ingredient_id);
     $stmt->execute();
 }
-
 
 public function getIngredientIdByName($name){
     require_once ("ingredientrepository.php");
@@ -91,7 +90,6 @@ public function getIngredientIdByName($name){
         return $this->connection->lastInsertId();
     }
 }
-
 
 public function getAllRecipe(){
     $stmt = $this->connection->prepare("SELECT * from recipe");
@@ -154,17 +152,6 @@ public function updateRecipe(recipe $recipe){
         ':cuisine'=>$recipe->cuisine,
         ':instructions'=>$recipe->instructions,
         ':recipe_id'=>$recipe->id
-    ];
-    $stmt->execute($data);
-}
-
-public function updateIngredientInRecipe($recipe_id, $existing_ingredient){
-    $stmt = $this->connection->prepare("UPDATE recipe_ingredients SET quantity=:quantity, unit=:unit WHERE recipe_id=:recipe_id LIMIT 1");
-
-    $data = [
-        ':quantity' => $existing_ingredient['quantity'],
-        ':unit'=>$existing_ingredient['unit'],
-        ':recipe_id'=>$recipe_id
     ];
     $stmt->execute($data);
 }

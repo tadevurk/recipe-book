@@ -4,6 +4,7 @@ require "recipecontroller.php";
 require "usercontroller.php";
 class homecontroller
 {
+    // Everything routes from here (recipe, user, auth controllers)
     public function index()
     {
         $this->recipe();

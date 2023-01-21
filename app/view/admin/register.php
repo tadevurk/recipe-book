@@ -1,7 +1,4 @@
 <?php
-// Set the session cookie to expire after 10 seconds
-session_set_cookie_params(1800);
-// start a session to store any errors that may occur during the registration process
 session_start();
 
 // include the necessary files
@@ -9,7 +6,6 @@ require_once __DIR__ . '/../../controllers/authcontroller.php';
 require_once __DIR__ . '/../../model/user.php';
 require_once __DIR__ . '/../../model/role.php';
 
-// create a new instance of the authrepository
 $authcontroller = new authcontroller();
 
 // check if the user session variable is set
@@ -143,23 +139,23 @@ if (isset($_SESSION['register_error'])) {
     <form action="" method="POST">
         <div class="form-group">
             <label for="firstName">First Name</label>
-            <input type="text" class="form-control" name="firstName" id="firstName" placeholder="Enter a first name">
+            <input type="text" class="form-control" name="firstName" id="firstName" placeholder="Enter a first name" autocomplete="off">
         </div>
         <div class="form-group">
             <label for="lastName">Last Name</label>
-            <input type="text" class="form-control" name="lastName" id="lastName" placeholder="Enter a last name">
+            <input type="text" class="form-control" name="lastName" id="lastName" placeholder="Enter a last name" autocomplete="off">
         </div>
         <div class="form-group">
             <label for="username">Username</label>
-            <input type="text" class="form-control" name="username" id="username" placeholder="Enter a username">
+            <input type="text" class="form-control" name="username" id="username" placeholder="Enter a username" autocomplete="off">
         </div>
         <div class="form-group">
             <label for="password">Password</label>
-            <input type="password" class="form-control" name="password" id="password" placeholder="Enter a password">
+            <input type="password" class="form-control" name="password" id="password" placeholder="Enter a password" autocomplete="off">
         </div>
         <div class="form-group">
             <label for="confirm_password">Confirm Password</label>
-            <input type="password" class="form-control" name="confirm_password" id="confirm_password" placeholder="Confirm the password">
+            <input type="password" class="form-control" name="confirm_password" id="confirm_password" placeholder="Confirm the password" autocomplete="off">
         </div>
         <button type="submit" class="btn btn-primary" name="register">Submit</button>
         <button type="submit" class="btn btn-outline-success" name="loginPage">Login Page</button>

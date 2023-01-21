@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: mysql
--- Generation Time: Jan 19, 2023 at 04:22 PM
+-- Generation Time: Jan 21, 2023 at 11:53 AM
 -- Server version: 10.9.4-MariaDB-1:10.9.4+maria~ubu2204
 -- PHP Version: 8.0.25
 
@@ -1365,7 +1365,36 @@ INSERT INTO `ingredients` (`id`, `name`) VALUES
 (1327, 'haslama'),
 (1328, 'vegetable oil, haslama'),
 (1329, 'sad'),
-(1330, 'eggs, beaten');
+(1330, 'eggs, beaten'),
+(1331, 'icing sugar'),
+(1332, 'ground almonds'),
+(1333, 'red food coloring'),
+(1334, 'd'),
+(1335, 'beef cheeks'),
+(1336, 'vanilla ice cream'),
+(1337, 'espresso coffee'),
+(1338, 'medium aubergines'),
+(1339, 'pot thick yogurt'),
+(1340, 'grape tomatoess'),
+(1341, 'seasonings'),
+(1342, 'buttermilks'),
+(1343, 'patates'),
+(1344, 'domates'),
+(1345, 'kivi'),
+(1346, 'mandalina'),
+(1347, 'Array'),
+(1348, 'kirmizi biber'),
+(1349, '3'),
+(1350, 'grated ginger'),
+(1351, 'lamb chops'),
+(1352, 'chicken chops'),
+(1353, 'oranges'),
+(1354, 'lemons'),
+(1355, 'red berries'),
+(1356, 'bottle light red wine'),
+(1357, 'Spanish brandy'),
+(1358, 'sparkling water'),
+(1359, 'thick slices brioche');
 
 -- --------------------------------------------------------
 
@@ -1387,8 +1416,14 @@ CREATE TABLE `recipe` (
 --
 
 INSERT INTO `recipe` (`id`, `name`, `cuisine`, `instructions`, `created_at`, `user_id`) VALUES
-(119, 'Spaghetti puttanesca', 'Italy', 'STEP 1\r\nHeat the oil in a non-stick pan over a medium-low heat. Add the onion along with a generous pinch of salt and fry for 10 mins, or until soft. Add the garlic and chilli, if using, and cook for a further minute.\r\n\r\nSTEP 2\r\nStir the tomatoes, anchovies, olives and capers into the onion, bring to a gentle simmer and cook, uncovered, for 15 mins. Season to taste.\r\n\r\nSTEP 3\r\nMeanwhile, bring a large pan of salted water to the boil. Cook the spaghetti following pack instructions, then drain and toss with the sauce and parsley.', '2023-01-18 09:44:40', 23),
-(122, 'Flamiche', 'French', 'STEP 1\r\nMix the flour and salt together in a large bowl. Mix the yeast with 175ml warm water and leave for 5 mins to froth just a little, then add to the flour and mix vigorously with a metal spoon. Knead the dough as soon as it comes together on a lightly floured surface for around 5 mins until smooth. Alternatively, use a mixer fitted with a dough hook, working the dough for around 5 mins on medium speed, then adding the salt towards the end of the mixing time. Leave in a lightly oiled bowl covered with a clean, damp tea towel until nearly doubled in size, about 1 hr.\r\n\r\nSTEP 2\r\nMeanwhile, heat the butter in a frying pan over a medium heat and cook the leaks until softened, about 8 mins. Don’t let them colour. When soft, remove from the heat and leave to cool. Beat the eggs, crème fraîche, grated cheese, herbs and nutmeg together, and season well with plenty of pepper and some salt. Mix in the leeks.\r\n\r\nSTEP 3\r\nHeat the oven to 220C/200C fan/gas 7. Line a 40 x 30cm baking tray with baking parchment. Lightly flour the work surface and roll the dough out to fit the baking sheet – it should be about 5mm thick. Make a small lip around the edge of the dough by folding the dough inward. Evenly spread the leek mixture over the dough, leaving a 1cm border. Sprinkle over the parmesan.\r\n\r\nSTEP 4\r\nCook the flamiche in the oven for around 25 mins until lightly golden on the top and the base is crisp. Remove from the oven, cut into squares and serve with salad, if you like.', '2023-01-19 15:54:05', 23);
+(122, 'Flamiche', 'French', 'STEP 1\r\nMix the flour and salt together in a large bowl. Mix the yeast with 175ml warm water and leave for 5 mins to froth just a little, then add to the flour and mix vigorously with a metal spoon. Knead the dough as soon as it comes together on a lightly floured surface for around 5 mins until smooth. Alternatively, use a mixer fitted with a dough hook, working the dough for around 5 mins on medium speed, then adding the salt towards the end of the mixing time. Leave in a lightly oiled bowl covered with a clean, damp tea towel until nearly doubled in size, about 1 hr.\r\n\r\nSTEP 2\r\nMeanwhile, heat the butter in a frying pan over a medium heat and cook the leaks until softened, about 8 mins. Don’t let them colour. When soft, remove from the heat and leave to cool. Beat the eggs, crème fraîche, grated cheese, herbs and nutmeg together, and season well with plenty of pepper and some salt. Mix in the leeks.\r\n\r\nSTEP 3\r\nHeat the oven to 220C/200C fan/gas 7. Line a 40 x 30cm baking tray with baking parchment. Lightly flour the work surface and roll the dough out to fit the baking sheet – it should be about 5mm thick. Make a small lip around the edge of the dough by folding the dough inward. Evenly spread the leek mixture over the dough, leaving a 1cm border. Sprinkle over the parmesan.\r\n\r\nSTEP 4\r\nCook the flamiche in the oven for around 25 mins until lightly golden on the top and the base is crisp. Remove from the oven, cut into squares and serve with salad, if you like.', '2023-01-19 15:54:05', 23),
+(123, 'Macarons', 'French', 'STEP 1\r\nPlace the icing sugar and ground almonds in the bowl of a food processor and pulse about 15 times until fully combined. Sieve this mixture into a large bowl, discarding any particles that stay in the sieve. Add the first batch of egg whites to the almond mixture, mix to form a thick paste and set aside.\r\n\r\nSTEP 2\r\nTip the second batch of egg whites into a spotlessly clean, heatproof bowl and have an electric whisk at the ready. Place 50ml water and the granulated sugar into a small saucepan on medium heat. Bring to a boil and cook until the syrup registers 110C, using a sugar thermometer, at which time start to beat the egg whites on high speed. Once the syrup is at 118C pour it slowly down the side of the mixer bowl, avoiding the moving whisk. Continue to whisk on high until the mixture has cooled slightly and you have a shiny peaked meringue mixture – the bowl should no longer be hot to the touch, but still warm. Add the colouring and whisk to combine.\r\n\r\nSTEP 3\r\nTip the meringue onto the almond mixture and gently fold together. It is important not to over-mix the batter – it should fall in a thick ribbon from the spatula. The ribbon should also fade back into the batter within about 30 secs – if it doesn’t, fold a few more times.\r\n\r\nSTEP 4\r\nHeat oven to 170C/150C fan/gas 3-4. Line three baking sheets with baking parchment. Transfer the batter to a piping bag fitted with a large round nozzle. Hold the bag vertically to the tray, with the nozzle about 1cm from it. Pipe rounds about 2.5cm in diameter onto the prepared baking sheets. Leave to rest for 30 mins, or until the macarons have developed a skin.', '2023-01-19 16:24:59', 23),
+(131, 'Beef cheek ravioli', 'Italian', '1) To make the beef cheek filling, roll the beef in the flour and pat off any excess. Heat the oil in a large casserole over a medium heat, add the meat and cook until well browned all over. Remove the meat and set aside.\r\n\r\n2) Preheat the oven to 150C/130C Fan/Gas 2. Add the onion, carrots and celery to the casserole and cook for around 8–10 minutes, until the onions are just soft. Stir in the garlic and tomato purée. Add the beer (or red wine) and stock and return the meat to the casserole. Bring to a gentle simmer, cover with the lid and place in the oven. Cook for around 4 hours until the cheeks are tender. (You could also cook them in a slow cooker for 8 hours or in a pressure cooker at high pressure for 1 hour.) Season with salt and pepper, to taste, and set aside to cool completely.\r\n\r\n3) To make the pasta, place the flour in a mound on a large clean work surface. Make a well in the centre and add the eggs. Gradually draw the flour into the eggs with your hands to create a dough. The dough will become less sticky as it comes together. Form into a ball and knead for around 8 minutes until smooth, elastic and when you drag your thumb across the dough it doesn’t tear. Place in an airtight box and chill in the fridge for 30 minutes.\r\n\r\n4) Divide the dough into two equal pieces and place one piece on a work surface dusted with semolina. Make sure the other dough piece is covered with a damp tea towel to prevent it from drying out. Roll the dough into a rectangle that is about 5mm/¼in thick.', '2023-01-19 16:34:01', 23),
+(136, 'Affogato', 'Italian', '1) Put a scoop of ice cream in four bowls, bearing in mind that the bowls should be small enough for the espresso to form a pool around the ice cream.\r\n\r\n2) Give each person a bowl and a freshly-made espresso. Pour the espressos over the ice cream and eat quickly.', '2023-01-19 16:38:14', 23),
+(160, 'Smoked aubergine purée', 'Turkey', 'STEP 1\r\nHeat grill to very hot. Slice the aubergines in half lengthways, then grill for 25 mins, turning occasionally, until soft – the skin will remain firm, but the flesh will soften. Lift the aubergines off the grill and leave until cool enough to handle.\r\n\r\nSTEP 2\r\nUsing a sharp knife, score the grilled flesh and scoop out the flesh with a spoon. Tip into a bowl and mash with a fork until you get a thick pulp. Beat in the lemon juice and garlic. Add the yogurt and dill, and season. Serve while still warm.', '2023-01-20 10:57:42', 23),
+(178, 'Chilli ginger lamb chops', 'Turkey', 'STEP 1\r\nPut the garlic in a bowl with the ginger, lemon juice, oil, spices and seasoning. Blitz with a hand blender until smooth, then use to coat the lamb chops on both sides. Leave to marinate in the fridge for a couple of hours or overnight.\r\n\r\nSTEP 2\r\nHeat a barbecue until hot. Barbecue the chops over the coals for 3 mins on each side until cooked but still pink and juicy in the centre.', '2023-01-21 11:08:13', 11),
+(179, 'Easy sangria', 'Spanish', 'STEP 1\r\nPut the chopped fruit in a bowl and sprinkle over the sugar and cinnamon, then stir to coat. Cover and leave to macerate in the fridge for at least 1 hr, or ideally overnight.\r\n\r\nSTEP 2\r\nFill a large jug with ice. Stir the macerated fruit mixture to ensure the sugar is dissolved, then tip into the jug with the wine and brandy. Stir, then top up with the sparkling water and serve.', '2023-01-21 11:13:07', 11),
+(180, 'French toast', 'French', 'STEP 1\r\nWhisk together the eggs, milk, cream, vanilla and cinnamon. Lay the brioche slices in a single layer in a shallow dish and pour the egg mixture over them. Allow to soak for 2-3 mins, then carefully turn over and soak for 2 mins more.\r\n\r\nSTEP 2\r\nHeat 1 tbsp of the vegetable oil and butter in a non-stick frying pan over a medium heat until foaming. Carefully lift 2 slices of the soaked brioche out of the dish and add to the frying pan. Fry for 3 mins on each side, until golden and crisp, then place on a wire rack over a baking tray in a warm oven while you repeat with the remaining slices.\r\n\r\nSTEP 3\r\nServe dusted in icing sugar and scattered with fresh berries, if you like.', '2023-01-21 11:17:08', 23);
 
 -- --------------------------------------------------------
 
@@ -1399,7 +1434,7 @@ INSERT INTO `recipe` (`id`, `name`, `cuisine`, `instructions`, `created_at`, `us
 CREATE TABLE `recipe_ingredients` (
   `recipe_id` int(11) NOT NULL,
   `ingredients_id` int(11) NOT NULL,
-  `quantity` int(11) NOT NULL,
+  `quantity` varchar(65) NOT NULL,
   `unit` varchar(64) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -1408,16 +1443,46 @@ CREATE TABLE `recipe_ingredients` (
 --
 
 INSERT INTO `recipe_ingredients` (`recipe_id`, `ingredients_id`, `quantity`, `unit`) VALUES
-(119, 55, 3, 'tbsp'),
-(119, 36, 1, ''),
-(119, 1322, 2, ''),
-(119, 675, 5, ''),
-(122, 786, 250, 'g'),
-(122, 12, 5, 'g'),
-(122, 55, 2, 'tbsp'),
-(122, 336, 500, 'g'),
-(122, 1330, 2, ''),
-(122, 115, 20, 'g');
+(122, 786, '250', 'g'),
+(122, 12, '5', 'g'),
+(122, 55, '2', 'tbsp'),
+(122, 336, '500', 'g'),
+(122, 1330, '2', ''),
+(122, 115, '20', 'g'),
+(123, 1331, '170', 'g'),
+(123, 1332, '160', 'g'),
+(123, 580, '120', 'ml'),
+(123, 440, '160', 'g'),
+(131, 1335, '800', 'g'),
+(131, 10, '2', 'tbsp'),
+(131, 20, '2', 'tbsp'),
+(136, 1336, '4', 'scoops'),
+(136, 1337, '4', 'shots'),
+(160, 1338, '2', ''),
+(160, 38, '1', ''),
+(160, 106, '2-3', ''),
+(160, 1339, '150', 'ml'),
+(178, 106, '5', ''),
+(178, 1350, '1', 'tbsp'),
+(178, 38, '1', 'tbsp'),
+(178, 39, '1/2', 'tsp'),
+(178, 1351, '8', ''),
+(179, 1353, '2', ''),
+(179, 833, '2', ''),
+(179, 1354, '2', ''),
+(179, 1355, '200', 'g'),
+(179, 1217, '3', 'tbsp'),
+(179, 407, '', ''),
+(179, 1356, '750', 'ml'),
+(179, 1357, '100', 'ml'),
+(179, 1358, '300', 'ml'),
+(180, 16, '2', 'large'),
+(180, 460, '80', 'ml'),
+(180, 51, '1', 'tsp'),
+(180, 900, '1/2', 'tsp'),
+(180, 1359, '4', ''),
+(180, 20, '2', 'tpsp'),
+(180, 28, '2', 'tbsp');
 
 -- --------------------------------------------------------
 
@@ -1441,8 +1506,9 @@ CREATE TABLE `user` (
 INSERT INTO `user` (`id`, `firstname`, `lastname`, `hashed_password`, `role`, `username`) VALUES
 (11, 'Nisan', 'Atalay', '$2y$10$bqzbxGAP89MLWCOH1S67WOROR4GcLG056NZyuplKIP1D8.Ybv94t6', 2, 'atalaynisan'),
 (23, 'Vedat', 'Turk', '$2y$10$OjixpmIZUsrom0dPAbrcReyYQZUD686jomm7SgsniIafggiTo/yY.', 1, 'vedatturk'),
-(24, 'ufuk', 'calimli', '$2y$10$PLo3aEnnpbj4ung6R8jkaO8HylKBRwnZpX9YYCYPNIdDejnNfFHHK', 1, 'ufukcalimli'),
-(26, 'Riccardo', 'Biggi', '$2y$10$/iU.VXXRxtd1i5gWPcKgRulTP1/hZ85vapj80SixTPRdg8TLjkEMa', 1, 'biggiriccardo');
+(26, 'Riccardo', 'Biggi', '$2y$10$/iU.VXXRxtd1i5gWPcKgRulTP1/hZ85vapj80SixTPRdg8TLjkEMa', 1, 'biggiriccardo'),
+(34, 'Mark', 'Haan', '$2y$10$6Q3.DLpvD7oWSLLS.fgAXuZWQ/V2KRHUAqu2SIboNZCHhK5aI.rqm', 2, 'markhaan'),
+(35, 'Megan', 'Carcar', '$2y$10$BVkT8kfWeszkrEoEQwRBJe5IPzxhc0h61fqTqrpST2jM3hj8TV1.C', 1, 'carcarmegan');
 
 --
 -- Indexes for dumped tables
@@ -1481,19 +1547,19 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `ingredients`
 --
 ALTER TABLE `ingredients`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1331;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1360;
 
 --
 -- AUTO_INCREMENT for table `recipe`
 --
 ALTER TABLE `recipe`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=123;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=181;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- Constraints for dumped tables

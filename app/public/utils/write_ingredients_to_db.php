@@ -28,7 +28,6 @@ $ingredients = [];
 foreach ($data as $key => $value){
     if ($key == 500){
         break;
-        echo "broke the loop";
     }
     $ingredients = array_merge($ingredients,$value['ingredients']);
 }

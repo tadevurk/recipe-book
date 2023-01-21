@@ -4,7 +4,6 @@ require __DIR__ . '/../../services/ingredientservice.php';
 class IngredientController{
     private $ingredientService;
 
-    // initialize services
     function __construct()
     {
         $this->ingredientService = new IngredientService();

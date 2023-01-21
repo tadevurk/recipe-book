@@ -1,5 +1,4 @@
 <?php
-// Start the session
 session_start();
 
 require_once __DIR__ . '/../../controllers/recipecontroller.php';
@@ -92,11 +91,11 @@ if (isset($_SESSION['message'])) {
     </div>
     <div class="form-group">
         <label for="recipeCuisine">Cuisine</label>
-        <input type="text" class="form-control" id="recipeCuisine" name="recipeCuisine" value="<?php echo $recipe->cuisine; ?>">
+        <input type="text" class="form-control" id="recipeCuisine" name="recipeCuisine" value="<?php echo $recipe->cuisine; ?>" autocomplete="off">
     </div>
     <div class="form-group">
         <label for="recipeName">Recipe Name</label>
-        <input type="text" class="form-control" id="recipeName" name="recipeName" value="<?php echo $recipe->name; ?>">
+        <input type="text" class="form-control" id="recipeName" name="recipeName" value="<?php echo $recipe->name; ?>" autocomplete="off">
     </div>
     <div class="form-group" id="ingredients">
         <label>Ingredients</label>

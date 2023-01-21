@@ -4,7 +4,6 @@ require_once __DIR__ . '/../../services/recipenameservice.php';
 class recipenamecontroller{
     private $recipeNameService;
 
-    // initialize services
     function __construct()
     {
         $this->recipeNameService = new RecipeNameService();

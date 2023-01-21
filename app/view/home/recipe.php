@@ -1,5 +1,4 @@
 <?php
-// Start the session
 session_start();
 
 require_once __DIR__ . '/../../controllers/recipecontroller.php'; // TODO: delete this
@@ -111,7 +110,7 @@ if (isset($_SESSION['message'])) {
                     <select class="form-control" id="cuisineSelect" name="cuisine">
                         <option value="">All</option>
                         <?php
-                        // Get the unique cuisines from the repository
+                        // Get the unique cuisines name
                         $uniqueCuisines = array_unique(array_column($recipes,'cuisine'));
                         foreach ($uniqueCuisines as $cuisine)
                         {?>
@@ -202,7 +201,7 @@ if (isset($_SESSION['message'])) {
                                 <?php
                                 // Check if the user is logged in
                                 if (isset($_SESSION['user']) || isset($_SESSION['admin'])){
-                                    // Display the update, delete, and add recipe buttons
+                                    // Display the update, delete buttons if the user (editor) / admin logged in
                                     ?>
                                     <hr>
                                     <form action="deleteRecipe" method="POST">

@@ -1,10 +1,6 @@
 <?php
-// Set the session cookie to expire after 10 seconds
-session_set_cookie_params(1800);
-// start a session to store any errors that may occur during the registration process
 session_start();
 
-// include the necessary files
 require_once __DIR__ . '/../../controllers/usercontroller.php';
 require_once __DIR__ . '/../../model/user.php';
 require_once __DIR__ . '/../../model/role.php';
@@ -160,10 +156,6 @@ tbody td {
                 <!-- Display a table row for each editor -->
                 <?php foreach ($editors as $editor) { ?>
                     <tr>
-<!--                        <td><?php /*echo $editor->id; */?></td>
-                        <td><?php /*echo $editor->firstName; */?></td>
-                        <td><?php /*echo $editor->lastName; */?></td>
-                        <td><?php /*echo $editor->username; */?></td>-->
                         <td data-th="User ID"><?php echo $editor->id; ?></td>
                         <td data-th="Name"><?php echo $editor->firstName; ?></td>
                         <td data-th="Last Name"><?php echo $editor->lastName; ?></td>

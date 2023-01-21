@@ -1,5 +1,4 @@
 <?php
-// Start the session
 session_start();
 require_once __DIR__ . '/../../model/user.php';
 require_once __DIR__ . '/../../controllers/usercontroller.php';
@@ -89,15 +88,15 @@ if (isset($_SESSION['message'])) {
     </div>
     <div class="form-group">
         <label for="firstName">First Name</label>
-        <input type="text" class="form-control" id="firstName" name="firstName" value="<?php echo $user->firstName; ?>">
+        <input type="text" class="form-control" id="firstName" name="firstName" value="<?php echo $user->firstName; ?>" autocomplete="off">
     </div>
     <div class="form-group">
         <label for="lastName">Last Name</label>
-        <input type="text" class="form-control" id="lastName" name="lastName" value="<?php echo $user->lastName; ?>">
+        <input type="text" class="form-control" id="lastName" name="lastName" value="<?php echo $user->lastName; ?>" autocomplete="off">
     </div>
     <div class="form-group">
         <label for="username">Username</label>
-        <input type="text" class="form-control" id="username" name="username" value="<?php echo $user->username; ?>">
+        <input type="text" class="form-control" id="username" name="username" value="<?php echo $user->username; ?>" autocomplete="off">
     </div>
     <div class="form-group">
         <label for="role">Role</label>

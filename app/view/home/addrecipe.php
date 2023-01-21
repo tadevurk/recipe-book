@@ -1,8 +1,6 @@
 <?php
-// Set the session cookie to expire after 10 seconds
-//session_set_cookie_params(1800);
-
 session_start();
+
 require_once __DIR__ . '/../../model/user.php';
 require_once __DIR__ . '/../../model/recipe.php';
 require_once __DIR__ . '/../../controllers/recipecontroller.php';
@@ -131,19 +129,19 @@ if (isset($_SESSION['message'])) {
       <form method="POST" action="addrecipe">
         <div class="form-group">
           <label for="recipeName">Recipe Name</label>
-          <input type="text" class="form-control" id="recipeName" name="recipeName" placeholder="Enter recipe name">
+          <input type="text" class="form-control" id="recipeName" name="recipeName" placeholder="Enter recipe name" autocomplete="off">
         </div>
         <div class="form-group">
           <label for="cuisineName">Cuisine Name</label>
-          <input type="text" class="form-control" id="cuisineName" name="cuisineName" placeholder="Enter cuisine name">
+          <input type="text" class="form-control" id="cuisineName" name="cuisineName" placeholder="Enter cuisine name" autocomplete="off">
         </div>
           <div class="form-group" id="ingredients">
               <label>Ingredients</label>
               <div class="input-group mb-3" id="ingredient-group-0">
                   <input type="text" class="form-control ingredient-input" placeholder="Ingredient" name="ingredient[]" id="ingredient-0" list="suggestions-list-0" autocomplete="off">
                   <datalist id="suggestions-list-0"></datalist>
-                  <input type="text" class="form-control" placeholder="Unit" name="unit[]" id="unit-0">
-                  <input type="text" class="form-control" placeholder="Quantity" name="quantity[]" id="quantity-0">
+                  <input type="text" class="form-control" placeholder="Unit" name="unit[]" id="unit-0" autocomplete="off">
+                  <input type="text" class="form-control" placeholder="Quantity" name="quantity[]" id="quantity-0" autocomplete="off">
               </div>
           </div>
           <div class="input-group-append">
