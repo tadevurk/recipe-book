@@ -29,7 +29,7 @@ public function insertRecipeIngredients(recipe $recipe, $lastInsertedID ){
 
         $dataIngredient = [
             ':recipe_id' => $lastInsertedID,
-            ':ingredients_id' => $this->getIngredientByName($ingredient['ingredient']),
+            ':ingredients_id' => $this->getIngredientIdByName($ingredient['ingredient']),
             ':unit'=>$ingredient['unit'],
             ':quantity'=> $ingredient['quantity']
         ];
@@ -37,7 +37,45 @@ public function insertRecipeIngredients(recipe $recipe, $lastInsertedID ){
     }
 }
 
-public function getIngredientByName($name){
+//While updating the ingredients, if there are new ingredients.
+public function addRecipeIngredients($recipeID,$ingredient_id,$unit, $quantity){
+    $stmtIngredient =$this->connection->prepare("INSERT into recipe_ingredients (recipe_id, ingredients_id, quantity, unit) 
+                                            VALUES (:recipe_id,:ingredients_id,:quantity,:unit)");
+
+        $dataIngredient = [
+            ':recipe_id' => $recipeID,
+            ':ingredients_id' => $ingredient_id,
+            ':unit'=>$unit,
+            ':quantity'=> $quantity
+        ];
+        $stmtIngredient->execute($dataIngredient);
+}
+
+// Updating the recipe ingredients
+public function updateRecipeIngredient($recipeID, $ingredient_id, $unit, $quantity) {
+    $query = "UPDATE recipe_ingredients SET quantity = :quantity, unit = :unit WHERE ingredients_id = :ingredients_id AND recipe_id = :recipe_id";
+    $stmt = $this->connection->prepare($query);
+    $dataIngredient = [
+        ':recipe_id' => $recipeID,
+        ':ingredients_id' => $ingredient_id,
+        ':unit'=>$unit,
+        ':quantity'=> $quantity
+    ];
+    $stmt->execute($dataIngredient);
+}
+
+
+// if the old ones removed
+public function deleteRecipeIngredient($recipeID, $ingredient_id) {
+    $query = "DELETE FROM recipe_ingredients WHERE recipe_id = :recipe_id AND ingredients_id = :ingredients_id";
+    $stmt = $this->connection->prepare($query);
+    $stmt->bindValue(':recipe_id', $recipeID);
+    $stmt->bindValue(':ingredients_id', $ingredient_id);
+    $stmt->execute();
+}
+
+
+public function getIngredientIdByName($name){
     require_once ("ingredientrepository.php");
     $stmt = $this->connection->prepare("SELECT id FROM ingredients WHERE name=:name");
     $data = [':name'=>"$name"];

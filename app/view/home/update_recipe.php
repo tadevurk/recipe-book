@@ -103,13 +103,14 @@ if (isset($_SESSION['message'])) {
         <?php
         $recipecontroller = new recipecontroller();
         $recipe_ingredients = $recipecontroller->getAllRecipeIngredients($recipe->id);
-        foreach ($recipe_ingredients as $ingredient) {
+        foreach ($recipe_ingredients as $key => $ingredient) {
             ?>
-            <div class="input-group mb-3" id="ingredient-group-0">
-                <input type="text" class="form-control ingredient-input" placeholder="Ingredient" name="ingredient[]" id="ingredient-0" list="suggestions-list-0" autocomplete="off" value="<?= $ingredient['name'] ?>">
-                <datalist id="suggestions-list-0"></datalist>
+            <div class="input-group mb-3" id="ingredient-group-<?=$key?>">
+                <input type="text" class="form-control ingredient-input" placeholder="Ingredient" name="ingredient[]" id="ingredient-<?=$key?>" list="suggestions-list-<?=$key?>" autocomplete="off" value="<?= $ingredient['name'] ?>">
+                <datalist id="suggestions-list-<?=$key?>"></datalist>
                 <input type="text" class="form-control" placeholder="Unit" name="unit[]" id="unit-0" value="<?= $ingredient['unit'] ?>">
                 <input type="text" class="form-control" placeholder="Quantity" name="quantity[]" id="quantity-0" value="<?= $ingredient['quantity'] ?>">
+                <button type="button" class="btn btn-danger" id="delete-<?=$key?>">Delete</button>
             </div>
             <?php
         }
@@ -133,10 +134,22 @@ if (isset($_SESSION['message'])) {
 
     addIngredientButton.addEventListener('click', function() {
         const ingredients = document.getElementById("ingredients").children
+        const lastIndex = ingredients.length - 1;
+        const lastElement = ingredients[lastIndex];
+        id_number = lastElement.id.split('-')[2];
+
         const ingredientGroup = ingredients.namedItem(`ingredient-group-${id_number}`)
         const newIngredientGroup = ingredientGroup.cloneNode(true);
+        const delete_buttons = newIngredientGroup.getElementsByTagName('button')
         const inputs = newIngredientGroup.getElementsByTagName("input");
         id_number++
+
+        delete_buttons[0].id = `${delete_buttons[0].id.split('-')[0]}-${id_number}`
+        delete_buttons[0].addEventListener("click", function(event) {
+            const delete_button_id = event.target.id
+            const parent = document.getElementById(delete_button_id).parentNode
+            parent.parentNode.removeChild(parent)
+        });
 
         for (let i=0; i<inputs.length; i++){
             inputs[i].value = "";
@@ -195,6 +208,17 @@ if (isset($_SESSION['message'])) {
             }
         }
     }, 200));
+
+    const ingredients = document.getElementById("ingredients");
+    const deleteButtons = ingredients.querySelectorAll(".btn-danger");
+
+    deleteButtons.forEach(function(button) {
+        button.addEventListener("click", function(event) {
+            const delete_button_id = event.target.id
+            const parent = document.getElementById(delete_button_id).parentNode
+            ingredients.removeChild(parent);
+        });
+    });
 </script>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
