@@ -52,6 +52,8 @@ class authrepository extends baserepository {
             //use password_hash to hash the password
             $hashed_password = password_hash($password,PASSWORD_DEFAULT);
 
+            
+
 
             $stmt = $this->connection->prepare('INSERT INTO user (firstname, lastname, hashed_password, role, username)
                                                         VALUES (:firstname, :lastname, :hashed_password,:role, :username)');

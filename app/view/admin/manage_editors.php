@@ -1,12 +1,5 @@
 <?php
 session_start();
-
-require_once __DIR__ . '/../../controllers/usercontroller.php';
-require_once __DIR__ . '/../../model/user.php';
-require_once __DIR__ . '/../../model/role.php';
-
-$usercontroller = new usercontroller();
-
 // check if the user session variable is set
 if (isset($_SESSION['admin'])) {
     $user = $_SESSION['admin'];

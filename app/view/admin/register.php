@@ -1,50 +1,10 @@
 <?php
 session_start();
 
-// include the necessary files
-require_once __DIR__ . '/../../controllers/authcontroller.php';
-require_once __DIR__ . '/../../model/user.php';
-require_once __DIR__ . '/../../model/role.php';
-
-$authcontroller = new authcontroller();
-
-// check if the user session variable is set
-if (isset($_SESSION['admin'])) {
-    $user = $_SESSION['admin'];
-    $userID = $_SESSION["adminID"];
-
-    if (isset($_POST["register"])) {
-        // retrieve the form data , remove the whitespace with trim
-        $firstName = htmlspecialchars(trim($_POST['firstName']));
-        $lastName = htmlspecialchars(trim($_POST['lastName']));
-        $username = htmlspecialchars(trim($_POST['username']));
-        $password = htmlspecialchars(trim($_POST['password']));
-        $confirm_password = htmlspecialchars(trim($_POST['confirm_password']));
-
-        // basic form validation
-        if (empty($firstName) || empty($lastName) || empty($username)) {
-            $_SESSION['register_error'] = 'Please fill out all required fields.';
-        } elseif ($password !== $confirm_password) {
-            $_SESSION['register_error'] = 'Passwords do not match.';
-        } else {
-            // try to register the user
-            try {
-                $newEditor = $authcontroller->register($firstName,$lastName,$username,$password,$confirm_password);
-
-                // registration was successful, redirect the user to the login page
-                header("Location: manageEditors");
-                exit;
-            } catch (Exception $e) {
-                // there was an error during registration, store it in the session and display it
-                $_SESSION['register_error'] = $e->getMessage();
-            }
-        }
-    }
+if (!isset($_SESSION['admin'])){
+    header("Location: login");
+    exit;
 }
-else{
-    header("location:login");
-}
-
 
 if (isset($_POST["loginPage"])){
     header("Location: login");
@@ -136,7 +96,7 @@ if (isset($_SESSION['register_error'])) {
 
 <div class="container mt-5">
     <h1>Homemade Recipe Editor Register Page</h1>
-    <form action="" method="POST">
+    <form action="registerUser" method="POST">
         <div class="form-group">
             <label for="firstName">First Name</label>
             <input type="text" class="form-control" name="firstName" id="firstName" placeholder="Enter a first name" autocomplete="off">

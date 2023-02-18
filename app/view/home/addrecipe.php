@@ -1,59 +1,6 @@
 <?php
 session_start();
-
-require_once __DIR__ . '/../../model/user.php';
-require_once __DIR__ . '/../../model/recipe.php';
-require_once __DIR__ . '/../../controllers/recipecontroller.php';
-
-if (isset($_SESSION['message'])) {
-    echo $_SESSION['message'];
-    unset($_SESSION['message']);
-}
-
-
-// check if the user session variable is set
-if (isset($_SESSION['user']) || isset($_SESSION['admin']) ) {
-
-    if (isset($_SESSION['user'])){
-        $user = $_SESSION['user'];
-        $userID = $_SESSION['userID'];
-    }
-    if (isset($_SESSION['admin'])){
-        $admin = $_SESSION['admin'];
-        $userID = $_SESSION['adminID'];
-    }
-
-
-    if (isset($_POST["submitRecipe"])){
-        $recipe = new recipe();
-        $ingredientArray = [];
-
-        foreach ($_POST['ingredient'] as $key=>$ingredient){
-            $unit = htmlspecialchars($_POST['unit'][$key]);
-            $quantity = htmlspecialchars($_POST['quantity'][$key]);
-            array_push($ingredientArray, array('ingredient' => $ingredient, 'unit' => $unit, 'quantity' => $quantity));
-        }
-        $recipe->name = htmlspecialchars($_POST["recipeName"]);
-        $recipe->cuisine = htmlspecialchars($_POST["cuisineName"]);
-        $recipe->instructions = htmlspecialchars($_POST["instructions"]);
-        $recipe->ingredients = $ingredientArray;
-
-        $recipecontroller = new recipecontroller();
-        $recipecontroller->insertRecipe($recipe,$userID);
-        $_SESSION['message'] = "Inserted successfully";
-    }
-}
-else{
-    header("location:login");
-}
-
-if (isset($_SESSION['message'])) {
-    echo $_SESSION['message'];
-    unset($_SESSION['message']);
-}
-
 ?>
-
 
 <!doctype html>
 <html lang="en">
@@ -126,7 +73,7 @@ if (isset($_SESSION['message'])) {
 
     <div class="container mt-5">
       <h1 class="text-center mb-5">Add a New Recipe</h1>
-      <form method="POST" action="addrecipe">
+      <form method="POST" action="addnewrecipe">
         <div class="form-group">
           <label for="recipeName">Recipe Name</label>
           <input type="text" class="form-control" id="recipeName" name="recipeName" placeholder="Enter recipe name" autocomplete="off">

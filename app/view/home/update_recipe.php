@@ -1,16 +1,5 @@
 <?php
 session_start();
-
-require_once __DIR__ . '/../../controllers/recipecontroller.php';
-require_once __DIR__ . '/../../model/recipe.php';
-
-if (isset($_POST['updateRecipeButton'])) {
-    $_SESSION['message'] = "Updated successfully";
-}
-if (isset($_SESSION['message'])) {
-    echo $_SESSION['message'];
-    unset($_SESSION['message']);
-}
 ?>
 
 <!doctype html>
@@ -100,8 +89,6 @@ if (isset($_SESSION['message'])) {
     <div class="form-group" id="ingredients">
         <label>Ingredients</label>
         <?php
-        $recipecontroller = new recipecontroller();
-        $recipe_ingredients = $recipecontroller->getAllRecipeIngredients($recipe->id);
         foreach ($recipe_ingredients as $key => $ingredient) {
             ?>
             <div class="input-group mb-3" id="ingredient-group-<?=$key?>">

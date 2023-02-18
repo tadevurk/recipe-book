@@ -2,6 +2,7 @@
 require __DIR__ . '/../services/ingredientservice.php';
 require "recipecontroller.php";
 require "usercontroller.php";
+require "authcontroller.php";
 class homecontroller
 {
     // Everything routes from here (recipe, user, auth controllers)
@@ -47,6 +48,16 @@ class homecontroller
         $userController->updateUser();
     }
 
+    public function addnewrecipe(){
+        $recipeController = new recipecontroller();
+        $recipeController->addnewrecipe();
+    }
+
+    public function checkLogin()
+    {
+        $authController = new authcontroller();
+        $authController->checkLogin();
+    }
     public function login()
     {
         require ("../view/login/login.php");
@@ -55,6 +66,12 @@ class homecontroller
     public function register()
     {
         require("../view/admin/register.php");
+    }
+
+    public function registerUser()
+    {
+        $authController = new authcontroller();
+        $authController->registerUser();
     }
 
     public function aboutme()

@@ -1,23 +1,25 @@
 <?php
 session_start();
-
-require_once __DIR__ . '/../../controllers/recipecontroller.php'; // TODO: delete this
-
-$recipecontroller = new recipecontroller();
-if (isset($_POST['delete_recipe'])) {
-    $_SESSION['message'] = "Deleted successfully";
-}
-
-if (isset($_POST['updateRecipeButton'])) {
-    $_SESSION['message'] = "Updated successfully";
-}
-
-
-if (isset($_SESSION['message'])) {
+if (isset($_SESSION['message'])){
+    ?>
+<div class="deleteMessage"><?php
+ {
     echo $_SESSION['message'];
     unset($_SESSION['message']);
+  }?>
+</div>
+<?php
 }
-
+if (isset($_SESSION['updateMessage'])){
+    ?>
+<div class="updateMessage"><?php
+ {
+    echo $_SESSION['updateMessage'];
+    unset($_SESSION['updateMessage']);
+  }?>
+</div>
+<?php
+}
 ?>
 
 <!doctype html>
@@ -99,7 +101,7 @@ if (isset($_SESSION['message'])) {
     <img src="/recipe3.png" alt="Homemade Recipe Picture" style="width: 100%; height: auto;">
 </div>
 
-<!--Body of the page-->
+<!-- Body -->
 <div class="container mt-5">
 <div class="container mt-5">
     <div class="row">
@@ -110,8 +112,6 @@ if (isset($_SESSION['message'])) {
                     <select class="form-control" id="cuisineSelect" name="cuisine">
                         <option value="">All</option>
                         <?php
-                        // Get the unique cuisines name
-                        $uniqueCuisines = array_unique(array_column($recipes,'cuisine'));
                         foreach ($uniqueCuisines as $cuisine)
                         {?>
                             <option value="<?=$cuisine?>"><?=$cuisine?></option>
@@ -120,11 +120,11 @@ if (isset($_SESSION['message'])) {
                         ?>
                     </select>
                 </div>
-                <button type="submit" class="btn btn-primary" id="filter-button">Filter</button>
+                <button type="submit" class="btn btn-primary" id="filter-button" name="filterButton">Filter</button>
             </form>
         </div>
         <div class="col-md-4">
-            <form method="post" action=""">
+            <form method="post" action="">
                 <div class="form-group">
                     <label for="recipeSearch">Search by Recipe Name:</label>
                     <input id="recipe-search" type="text" class="form-control" name="recipeName" list="suggestions-list" autocomplete="off">
@@ -137,25 +137,6 @@ if (isset($_SESSION['message'])) {
 
 
     <div class="row mt-5">
-        <?php
-        // Check if the form has been submitted
-        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            // Filter the recipes based on the selected cuisine or search term
-            $filteredRecipes = array_filter($recipes, function($recipe) {
-                if (isset($_POST['cuisine']) && !empty($_POST['cuisine'])) {
-                    return $recipe->cuisine == $_POST['cuisine'];
-                }
-                if (isset($_POST['recipeName']) && !empty($_POST['recipeName'])) {
-                    return stristr($recipe->name, $_POST['recipeName']);
-                }
-                return true;
-            });
-        } else {
-            // If the form has not been submitted, display all recipes
-            $filteredRecipes = $recipes;
-        }?>
-
-
         <div class="container mt-5">
             <div class="row">
                 <?php
@@ -181,7 +162,6 @@ if (isset($_SESSION['message'])) {
                                         </thead>
                                         <tbody>
                                         <?php
-                                        $recipe_ingredients = $recipecontroller->getAllRecipeIngredients($recipe->id);
                                         foreach ($recipe_ingredients as $ingredient){?>
                                             <tr>
                                                 <td><?= $ingredient['unit']?></td>
@@ -205,7 +185,6 @@ if (isset($_SESSION['message'])) {
                                     ?>
                                     <hr>
                                     <form action="deleteRecipe" method="POST">
-                                        <!--<button type="submit" name="delete_recipe" value="<?php /*=$recipe->id;*/?>" class="btn btn-danger">Delete</button>-->
                                         <button type="submit" name="delete_recipe" value="<?=$recipe->id;?>" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this recipe?');">Delete</button>
                                         <a href="updateRecipe?id=<?php echo $recipe->id ?>" class="btn btn-primary">Update</a>
                                     </form>
@@ -265,4 +244,21 @@ if (isset($_SESSION['message'])) {
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
 </body>
+
+<style>
+.deleteMessage {
+  padding: 10px;
+  background-color: red;
+  border: 1px solid green;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+.updateMessage {
+  padding: 10px;
+  background-color: #dff2bf;
+  border: 1px solid green;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+</style>
 </html>
