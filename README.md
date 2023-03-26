@@ -22,10 +22,3 @@ password: 1234
 
 username: carcarmegan
 password: 1234
-
-# Admins:
-username: atalaynisan
-password: 1234
-
-username: markhaan
-password: 1234
